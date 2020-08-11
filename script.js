@@ -8,8 +8,21 @@ document.getElementById("fetchButton").addEventListener('click', fetchNewDog);
 document.getElementById("gridButton").addEventListener('click', createImageGrid);
 
 //FETCH CALLS
+function fetchNewDog() {
+  fetch('https://dog.ceo/api/breeds/image/random')
+    .then(checkStatus)
+    .then(response => response.json())
+    .then(data => handleData(data))
+    .catch(error => notifyUser(error));
+}
 
-
+function createImageGrid() {
+  fetch('https://dog.ceo/api/breeds/image/random/3')
+    .then(checkStatus)
+    .then(response => response.json())
+    .then(data => createGrid(data.message))
+    .catch(error => notifyUser(error));
+}
 
 //HELPER FUNCTIONS
 //checkStatus
